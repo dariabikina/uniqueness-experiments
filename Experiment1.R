@@ -71,5 +71,10 @@ languages_compare <- rbind(eng_participant_context_rate_language, rus_participan
 model_languages <- lmer(Rate ~ Language + (1|Participant) + (1|Context), data = languages_compare)
 model_zoom_languages <- lmer(Rate ~ Language + (1|Participant) + (1|Zooming), data = eng_rus_zoom)
 
+#Comparing just plurals in both languages
+subjects_pl <- languages_compare %>% filter(Context == "exp3" | Context == "exp8")
+model_subjects_pl <- lmer(Rate ~ Language + (1|Participant) +(1|Context), data = subjects_pl)
 
-
+#Comparing just singulars in both languages 
+subjects_sg <- languages_compare %>% filter(Context == "exp1" | Context == "exp2")
+model_subjects_sg <- lmer(Rate ~ Language + (1|Participant) + (1|Context), data = subjects_sg)
